@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Website</title>
+    <style>
+        /* Color Variables */
+        :root {
+            --primary-blue: #007bff;
+            --secondary-green: #28a745;
+            --white: #ffffff;
+            --dark-blue: #0056b3;
+        }
+
+        /* General Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--white);
+            color: #333;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        header ul li {
+            margin: 0 20px;
+        }
+
+        header ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        header ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-green);
+            left: 0;
+            bottom: -5px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        header ul li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Main Section */
+        main {
+            padding: 40px;
+        }
+
+        .about-me-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Blog Post Styling */
+        .blog-post {
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: var(--secondary-green);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pop-up Styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Me Section -->
+        <section id="about">
+            <h1>About Me</h1>
+            <div class="about-me-content fade-in">
+                <img src="https://via.placeholder.com/150" alt="Your Name" class="profile-pic">
+                <p>Hi, I'm [Your Name], a [profession or passion] with a love for [interest or hobby]. I've been working in [industry] for [X years], and I'm passionate about [something you're passionate about].</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+            <h1>Portfolio</h1>
+            <div class="portfolio-grid fade-in">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 1">
+                    <h3>Project Title</h3>
+                    <p>Short description of the project.</p>
+                </div>
+                <!-- Add more portfolio items as needed -->
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <h1>Blog</h1>
+            <div class="blog-post fade-in">
+                <h2>Blog Post Title</h2>
+                <p>Published on [Date]</p>
+                <p>Short summary of the blog post...</p>
+                <a href="#">Read More</a>
+            </div>
+            <!-- Add more blog posts -->
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h1>Contact</h1>
+            <form id="contact-form" class="fade-in">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+            <p id="form-status"></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- Pop-up Modal -->
+    <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+            <span id="close-popup" class="popup-close">&times;</span>
+            <h2>Subscribe to My Newsletter</h2>
+            <form>
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Fade-in effect on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        window.addEventListener('scroll', () => {
+            fadeElements.forEach(el => {
+                const position = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (position < windowHeight - 50) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        // Pop-up functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('popup');
+            const closePopup = document.getElementById('close-popup');
+
+            // Show the pop-up after 5 seconds
+            setTimeout(() => {
+                popup.style.display = 'flex';
+            }, 5000);
+
+            // Close the pop-up
+            closePopup.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+
+            // Close the pop-up if clicked outside of the content
+            window.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+        });
+
+        // Contact form validation
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name === '' || email === '' || message === '') {
+                document.getElementById('form-status').textContent = 'Please fill out all fields.';
+            } else {
+                document.getElementById('form-status').textContent = 'Thank you for your message!';
+            }
+        });
+    </script>
+</body>
+</html>
